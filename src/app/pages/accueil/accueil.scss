@@ -1,0 +1,38 @@
+.categorie {
+  display: flex;
+
+  &:nth-child(1) .en-tete {
+    background-color: red;
+  }
+
+  &:nth-child(2) .en-tete {
+    background-color: orange;
+  }
+
+  &:nth-child(3) .en-tete {
+    background-color: yellow;
+  }
+
+  &:nth-child(4) .en-tete {
+    background-color: lightgreen;
+  }
+
+  &:nth-child(5) .en-tete {
+    background-color: lightblue;
+  }
+
+  .en-tete {
+    height: 100px;
+    width: 100px;
+    background-color: violet;
+
+    span {
+      color: white;
+    }
+  }
+
+  .images {
+    background-color: lightgrey;
+    flex: 1;
+  }
+}

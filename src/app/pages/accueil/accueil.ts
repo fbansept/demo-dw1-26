@@ -6,4 +6,19 @@ import { Component } from '@angular/core';
   templateUrl: './accueil.html',
   styleUrl: './accueil.scss',
 })
-export class Accueil {}
+export class Accueil {
+  categories = [
+    {
+      titre: 'Top',
+      images: [],
+    },
+    {
+      titre: 'Moyen',
+      images: [],
+    },
+    {
+      titre: 'Nul',
+      images: [],
+    },
+  ];
+}

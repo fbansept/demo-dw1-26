@@ -1,1 +1,15 @@
-<p>accueil works!</p>
+<div class="contenu">
+    
+  @for (categorie of categories; track $index) {
+
+    <div class="categorie">
+      <div class="en-tete">
+        <span>{{categorie.titre}}</span>
+      </div>
+
+      <div class="images"></div>
+    </div>
+
+  }
+  
+</div>
