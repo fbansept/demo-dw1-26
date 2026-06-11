@@ -7,7 +7,7 @@
   </div>
 
   <div class="liste-categories">
-    @for (categorie of categories; track indexCategorie; let indexCategorie = $index) {
+    @for (categorie of categories(); track indexCategorie; let indexCategorie = $index) {
       <div class="categorie">
         <div class="en-tete">
           <span>{{ categorie.titre }}</span>
