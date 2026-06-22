@@ -28,7 +28,7 @@ export class Accueil {
 
   chargement() {
     this.httpClient
-      .get('http://localhost:3000/categories')
+      .get('http://localhost:7777/categories')
       .subscribe((categoriesRenvoyees: any) => {
         this.categories.set(categoriesRenvoyees);
         //setCategories(categoriesRenvoyees) // equivalent en react
@@ -58,11 +58,20 @@ export class Accueil {
   onAjoutImage() {
     if (this.nouvelleUrlImage != '') {
       this.httpClient
-        .post('http://localhost:3000/ajout-image', {
+        .post('http://localhost:7777/ajout-image', {
           indexCategorie: 0,
           urlImage: this.nouvelleUrlImage,
         })
-        .subscribe(() => this.chargement());
+        .subscribe({
+          next: () => this.chargement(), //quoi faire en cas de succes
+          error: (erreur) => {
+            //quoi faire en cas d'erreur
+            if (erreur.status === 409) {
+              alert('Cette URL existe déjà dans la tier-list');
+            }
+            this.chargement();
+          },
+        });
 
       // this.categories()[0].images.push(this.nouvelleUrlImage);
       this.nouvelleUrlImage = '';
@@ -71,9 +80,8 @@ export class Accueil {
   }
 
   onSuppressionImage(indexCategorie: number, indexImage: number) {
-
     this.httpClient
-      .post('http://localhost:3000/supprimer-image', { indexCategorie, indexImage })
+      .post('http://localhost:7777/supprimer-image', { indexCategorie, indexImage })
       .subscribe(() => this.chargement());
 
     // console.log(indexCategorie, indexImage);
@@ -85,6 +93,11 @@ export class Accueil {
   }
 
   onDeplacement(indexCategorie: number, indexImage: number, haut: boolean = true) {
+
+    this.httpClient
+      .patch('http://localhost:7777/deplacement-image', { indexCategorie, indexImage, haut })
+      .subscribe(() => this.chargement());
+
     // //on duplique l'image dans la categorie inférieur/supérieur (indexCategorie + 1 ou -1 selon le parametre "haut")
     // const urlImage = this.categories()[indexCategorie].images[indexImage];
     // this.categories()[indexCategorie + (haut ? -1 : 1)].images.push(urlImage);
