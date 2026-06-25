@@ -27,12 +27,15 @@ export class Accueil {
   }
 
   chargement() {
-    this.httpClient
-      .get('http://localhost:7777/categories')
-      .subscribe((categoriesRenvoyees: any) => {
-        this.categories.set(categoriesRenvoyees);
-        //setCategories(categoriesRenvoyees) // equivalent en react
-      });
+    const jwt = localStorage.getItem('jwt');
+
+    if (jwt) {
+      this.httpClient
+        .get('http://localhost:7777/categories', { headers: { Authorization: 'Bearer ' + jwt } })
+        .subscribe((categoriesRenvoyees: any) => {
+          this.categories.set(categoriesRenvoyees);
+        });
+    }
 
     // const jsonCategories = localStorage.getItem('categories');
     // //on vérifie si il y a des données
@@ -93,7 +96,6 @@ export class Accueil {
   }
 
   onDeplacement(indexCategorie: number, indexImage: number, haut: boolean = true) {
-
     this.httpClient
       .patch('http://localhost:7777/deplacement-image', { indexCategorie, indexImage, haut })
       .subscribe(() => this.chargement());
