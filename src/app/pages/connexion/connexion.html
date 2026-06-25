@@ -1,15 +1,13 @@
-<form class="formulaire">
-
+<form class="formulaire" [formGroup]="formulaire">
   <mat-form-field>
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Ex. john@doe.com">
+    <input matInput formControlName="email" placeholder="Ex. john@doe.com" />
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Mot de passe</mat-label>
-    <input matInput type="password">
+    <input matInput formControlName="password" type="password" />
   </mat-form-field>
 
   <button matButton="elevated">Se connecter</button>
-
 </form>
