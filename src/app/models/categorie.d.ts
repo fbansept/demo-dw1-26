@@ -1,1 +1,5 @@
-type Categorie = { titre: string; images: string[] };
+type Categorie = { 
+    id: number;
+    titre: string; 
+    images: Image[] 
+};

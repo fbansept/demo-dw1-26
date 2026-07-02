@@ -31,7 +31,7 @@ export class Accueil {
 
     if (jwt) {
       this.httpClient
-        .get('http://localhost:7777/categories', { headers: { Authorization: 'Bearer ' + jwt } })
+        .get('http://localhost:7777/categories')
         .subscribe((categoriesRenvoyees: any) => {
           this.categories.set(categoriesRenvoyees);
         });
@@ -82,9 +82,11 @@ export class Accueil {
     }
   }
 
-  onSuppressionImage(indexCategorie: number, indexImage: number) {
+  onSuppressionImage(idImage: number) {
+    //TODO : envoyer l'id de l'image plutot que son index
+
     this.httpClient
-      .post('http://localhost:7777/supprimer-image', { indexCategorie, indexImage })
+      .delete('http://localhost:7777/supprimer-image/' + idImage)
       .subscribe(() => this.chargement());
 
     // console.log(indexCategorie, indexImage);

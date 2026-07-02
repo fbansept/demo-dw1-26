@@ -14,12 +14,12 @@
         </div>
 
         <div class="images">
-          @for (urlImage of categorie.images; track indexImage; let indexImage = $index) {
+          @for (image of categorie.images; track image.id; let indexImage = $index) {
             <!-- <img src="{{ urlImage }}" /> -->
             <div class="image">
-              <img [attr.src]="urlImage" />
+              <img [attr.src]="image.url" />
               <div
-                (click)="onSuppressionImage(indexCategorie, indexImage)"
+                (click)="onSuppressionImage(image.id)"
                 class="bouton bouton-supprimer"
               >
                 <span>x</span>
