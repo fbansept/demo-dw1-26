@@ -26,14 +26,14 @@
               </div>
 
               @if (indexCategorie != 0) {
-                <div (click)="onDeplacement(indexCategorie, indexImage)" class="bouton bouton-haut">
+                <div (click)="onDeplacement(image.id)" class="bouton bouton-haut">
                   <span>+</span>
                 </div>
               }
 
               @if (indexCategorie < categories().length - 1){
                 <div
-                  (click)="onDeplacement(indexCategorie, indexImage, false)"
+                  (click)="onDeplacement(image.id,  false)"
                   class="bouton bouton-bas"
                 >
                   <span>-</span>

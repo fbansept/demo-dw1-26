@@ -97,9 +97,9 @@ export class Accueil {
     // this.sauvegarde();
   }
 
-  onDeplacement(indexCategorie: number, indexImage: number, haut: boolean = true) {
+  onDeplacement(idImage: number, haut: boolean = true) {
     this.httpClient
-      .patch('http://localhost:7777/deplacement-image', { indexCategorie, indexImage, haut })
+      .patch('http://localhost:7777/deplacement-image/' + idImage, { haut })
       .subscribe(() => this.chargement());
 
     // //on duplique l'image dans la categorie inférieur/supérieur (indexCategorie + 1 ou -1 selon le parametre "haut")
